@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		@include('nav')
+		@include('layouts.nav')
 
 		@yield('content')
 	</div>
