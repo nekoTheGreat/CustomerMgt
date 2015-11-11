@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+Route::get('/customers', 'CustomerController@index');
+Route::get('/customers/form', 'CustomerController@addForm');

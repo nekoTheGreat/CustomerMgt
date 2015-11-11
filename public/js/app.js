@@ -1,4 +1,9 @@
 $( document ).ready(function(){
 	$(".dropdown-button").dropdown();
-	$(".button-collapse").sideNav();
+	$(".right-button-collapse").sideNav({
+		edge: 'right'
+	});
+	$(".left-button-collapse").sideNav({
+		
+	});
 });

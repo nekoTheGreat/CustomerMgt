@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+	Customer Management
+@endsection
+
 @section('content')
 
 <div class="row">
