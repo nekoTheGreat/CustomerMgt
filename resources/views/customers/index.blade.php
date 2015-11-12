@@ -28,22 +28,21 @@
 			<th data-field="id">ID</th>
 			<th data-field="name">Name</th>
 			<th data-field="date_added">Date Added</th>
+			<th>&nbsp;</th>
 		</tr>
+		<? foreach($customers as $customer): ?>
 		<tr>
-			<td>REPAIRS-13131890213</td>
-			<td>Marco, Polo</td>
-			<td>December 12, 2014</td>
+			<td>{{$customer->ID}}</td>
+			<td>{{$customer->lastname}}, {{$customer->firstname}}</td>
+			<td>{{$customer->created_at}}</td>
+			<td class="right">
+				<a href="/customers/form/<?=$customer->ID;?>">
+					<i class="material-icons">edit</i>
+				</a>
+				&nbsp;
+				<i class="material-icons">delete</i>
 		</tr>
-		<tr>
-			<td>DOCTOR-12313123121</td>
-			<td>Keanne Dew</td>
-			<td>May 25, 2015</td>
-		</tr>
-		<tr>
-			<td>CONSTRUCTIONS	-12313123121</td>
-			<td>Samuel Park</td>
-			<td>October 7, 2013</td>
-		</tr>
+		<? endforeach; ?>
 	</table>
 </div>
 
