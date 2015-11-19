@@ -40,7 +40,10 @@
 					<i class="material-icons">edit</i>
 				</a>
 				&nbsp;
-				<i class="material-icons">delete</i>
+				<a href="/customers/delete/<?=$customer->ID;?>"/>
+					<i class="material-icons">delete</i>
+				</a>
+			</td>
 		</tr>
 		<? endforeach; ?>
 	</table>

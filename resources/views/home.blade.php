@@ -11,9 +11,9 @@
 		<div class="card">
 			<h5>Recently added</h5>
 			<ul class="collection">
-				<li class="collection-item">Marco Polo</li>
-				<li class="collection-item">Keanne Dew</li>
-				<li class="collection-item">Samuel Park</li>
+				@foreach($recentAdded as $recent)
+				<li class="collection-item">{{$recent->lastname.', '.$recent->firstname}}</li>
+				@endforeach
 			</ul>
 		</div>
 	</div>

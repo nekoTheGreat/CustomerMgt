@@ -12,16 +12,16 @@
 		<p> {{Session::get('success')}} </p>
 	</div>
 	@endif
-	<form method="POST" action="/customers/update">
+	<form method="POST" action="/customers/process">
 		<input type="hidden" name="ID" value="{{ $customer->ID }}"/>
 		@include('customers.form')
 		<div class="row">
 			<div class="col s12">
 				<p class="right-align">
-					<button type="submit" class="waves-effect btn red">
+					<button name="_action" type="submit" class="waves-effect btn red" value="Delete">
 						Delete
 					</button>
-					<button type="submit" class="waves-effect btn green">
+					<button name="_action" type="submit" class="waves-effect btn green" value="Save">
 						Save
 					</button>
 				</p>

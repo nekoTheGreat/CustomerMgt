@@ -8,9 +8,16 @@ use App\Models\Customer;
 
 class CustomerController extends Controller{
 
-	public function index(){
+	public function index(Request $request){
+		$search = $request->input('search');
+		if($search){
+			$customers = Customer::where('lastname', 'LIKE', '%'.$search.'%')
+				->orWhere('firstname','LIKE','%'.$search.'%')->get();
+		}else{
+			$customers = Customer::all();
+		}
 		$data = [
-			'customers'=>Customer::all()
+			'customers'=> $customers
 		];
 		return view('customers.index', $data);
 	}
@@ -46,6 +53,31 @@ class CustomerController extends Controller{
 			$request->session()->flash('success', 'Customer updated');
 			return redirect('/customers/form/'.$customer->ID)->with('success', 'Customer updated.');
 		}
-		return redirect('/customers')->flash('error', 'Customer not found');
+		$request->session()->flash('error', 'Customer not found');
+		return redirect('/customers');
 	}
+
+	public function delete(Request $request, $ID = null){
+		if($ID == null){
+			$ID = $request->input('ID');
+		}
+		$customer = Customer::findOrFail($ID);
+		if($customer){
+			$customer->delete();
+			$request->session()->flash('success', 'Customer delete.');
+		}else{
+			$request->session()->flash('error', 'Customer not found.');
+		}
+		return redirect('/customers');
+	}
+
+	public function process(Request $request){
+		if($request->input('_action') == 'Delete'){
+			return $this->delete($request);
+		}else if($request->input('_action') == 'Save'){
+			return $this->update($request);
+		}
+		
+	}
+
 }

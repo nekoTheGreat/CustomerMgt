@@ -18,3 +18,5 @@ Route::get('/customers/form', 'CustomerController@addForm');
 Route::get('/customers/form/{ID}', 'CustomerController@editForm');
 Route::post('/customers/add', 'CustomerController@add');
 Route::post('/customers/update', 'CustomerController@update');
+Route::post('/customers/process', 'CustomerController@process');
+Route::get('/customers/delete/{ID}', 'CustomerController@delete');
