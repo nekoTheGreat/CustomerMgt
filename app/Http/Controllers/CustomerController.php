@@ -7,24 +7,34 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 
 class CustomerController extends Controller{
-
+	protected $default_sub_nav = [
+		['link'=>'/customers', 'name'=>'List of Customers'],
+		['link'=>'/customers/form', 'name'=>'Add Customer']
+	];
+	
 	public function index(Request $request){
 		$search = $request->input('search');
 		if($search){
-			$customers = Customer::where('lastname', 'LIKE', '%'.$search.'%')
-				->orWhere('firstname','LIKE','%'.$search.'%')->get();
+			$customers = Customer::where('type', '=', 'customer')
+				->where('lastname', 'LIKE', '%'.$search.'%')
+				->orWhere('firstname','LIKE','%'.$search.'%')
+				->get();
 		}else{
-			$customers = Customer::all();
+			$customers = Customer::where('type', '=', 'customer')->get();
 		}
 		$data = [
-			'customers'=> $customers
+			'customers'	=> $customers,
+			'subnav'	=> $this->default_sub_nav
 		];
 		return view('customers.index', $data);
 	}
 
 	public function addForm(){
 		$customer = new Customer();
-		$data = ['customer'=>$customer];
+		$data = [
+			'customer'	=> $customer,
+			'subnav'	=> $this->default_sub_nav
+		];
 		return view('customers.add', $data);
 	}
 
@@ -33,35 +43,38 @@ class CustomerController extends Controller{
 		return redirect('/customers');
 	}
 
-	public function editForm(Request $request, $ID){
-		$customer = Customer::findOrFail($ID);
+	public function editForm(Request $request, $id){
+		$customer = Customer::findOrFail($id);
 		if($customer){
-			$data = ['customer'=>$customer];
+			$data = [
+				'customer'	=> $customer,
+				'subnav'	=> $this->default_sub_nav
+			];
 			return view('customers.edit', $data);
 		}
 		return redirect('/customers')->flash('error', 'Customer not found');
 	}
 
 	public function update(Request $request){
-		$customer = Customer::findOrFail($request->input('ID'));
-
+		$id = $request->input('id');
+		$customer = Customer::find($id);
 		if($customer){
 			$customer->firstname = $request->input('firstname');
 			$customer->lastname = $request->input('lastname');
 			$customer->update();
 
 			$request->session()->flash('success', 'Customer updated');
-			return redirect('/customers/form/'.$customer->ID)->with('success', 'Customer updated.');
+			return redirect('/customers/form/'.$customer->id)->with('success', 'Customer updated.');
 		}
 		$request->session()->flash('error', 'Customer not found');
 		return redirect('/customers');
 	}
 
-	public function delete(Request $request, $ID = null){
-		if($ID == null){
-			$ID = $request->input('ID');
+	public function delete(Request $request, $id = null){
+		if($id == null){
+			$id = $request->input('id');
 		}
-		$customer = Customer::findOrFail($ID);
+		$customer = Customer::find($id);
 		if($customer){
 			$customer->delete();
 			$request->session()->flash('success', 'Customer delete.');

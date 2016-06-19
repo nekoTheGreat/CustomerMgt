@@ -10,6 +10,11 @@
 
 @section('right_panel')
 
+@if (Session::has('error'))
+	<div class="row flash">
+		<p> {{Session::get('error')}} </p>
+	</div>
+@endif
 <div class="search row">
 	<form>
 		<div class="hide-on-small-only col m4 l6">
@@ -32,15 +37,15 @@
 		</tr>
 		<? foreach($customers as $customer): ?>
 		<tr>
-			<td>{{$customer->ID}}</td>
+			<td>{{$customer->id}}</td>
 			<td>{{$customer->lastname}}, {{$customer->firstname}}</td>
 			<td>{{$customer->created_at}}</td>
 			<td class="right">
-				<a href="/customers/form/<?=$customer->ID;?>">
+				<a href="/customers/form/{{ $customer->id }}">
 					<i class="material-icons">edit</i>
 				</a>
 				&nbsp;
-				<a href="/customers/delete/<?=$customer->ID;?>"/>
+				<a href="/customers/delete/{{ $customer->id }}"/>
 					<i class="material-icons">delete</i>
 				</a>
 			</td>

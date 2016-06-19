@@ -2,10 +2,12 @@
 
 namespace  App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+class Customer extends User{
+	protected $hidden = ['type'];
+	protected $required_values = ['type'=>'customer'];
 
-class Customer extends Model{
-	protected $table = 'customers';
-	protected $primaryKey = 'ID';
-	protected $fillable = ['firstname', 'lastname'];
+	public function __construct(array $attributes = []){
+		parent::__construct($attributes);
+		$this->forceFill($this->required_values);
+	}
 }

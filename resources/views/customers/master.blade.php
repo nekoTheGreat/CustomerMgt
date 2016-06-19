@@ -15,18 +15,16 @@
 @section('content')
 
 <div class="row">
-	<div class="col hide-on-small-only m4 l3 blue lighten-4 submenu" style="padding:0px;">
-		<h5>Customer Options</h5>
+	<div class="col hide-on-small-only m3 l2 blue lighten-4 submenu" style="padding:0px;">
 		<ul class="collection">
-			<li class="collection-item">
-				<a href="/customers" class="waves-effects">List of Customers</a>
+			@foreach($subnav as $link)
+			<li class="collection-item waves-effects">
+				<a href="{{ $link['link' ]}}" class="waves-effects">{{ $link['name'] }}</a>
 			</li>
-			<li class="collection-item">
-				<a href="/customers/form">Add Customer</a>
-			</li>
+			@endforeach
 		</ul>
 	</div>
-	<div class="col s12 m8 l9">
+	<div class="col s12 m9 l10">
 		@yield('right_panel')
 	</div>
 @endsection

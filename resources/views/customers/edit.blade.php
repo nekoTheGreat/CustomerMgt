@@ -13,7 +13,7 @@
 	</div>
 	@endif
 	<form method="POST" action="/customers/process">
-		<input type="hidden" name="ID" value="{{ $customer->ID }}"/>
+		<input type="hidden" name="id" value="{{ $customer->ID }}"/>
 		@include('customers.form')
 		<div class="row">
 			<div class="col s12">
