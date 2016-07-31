@@ -59,8 +59,18 @@ class CustomerController extends Controller{
 		$id = $request->input('id');
 		$customer = Customer::find($id);
 		if($customer){
-			$customer->firstname = $request->input('firstname');
-			$customer->lastname = $request->input('lastname');
+			$data = $request->input();
+			//check for password and confirm password differences
+			//just update if both are empty
+			if(empty($request->input('password')) || empty($request->input('confirm_password'))){
+				if(isset($data['password']))
+					unset($data['password']);
+			}else if($request->input('password') != $request->input('confirm_password')){
+				$request->session()->flash('error', 'Password and Confirm password must be similar.');
+				return redirect('/customers/form/'.$customer->id);
+			}
+			
+			$customer->fill($request->input());
 			$customer->update();
 
 			$request->session()->flash('success', 'Customer updated');
