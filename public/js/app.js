@@ -7,3 +7,11 @@ $( document ).ready(function(){
 		
 	});
 });
+
+function showFloatMenu(el, isShow){
+	if(isShow){
+		$(el).showFAB();
+	}else{
+		$(el).closeFAB();
+	}
+}
