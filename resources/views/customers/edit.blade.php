@@ -12,6 +12,11 @@
 		<p> {{Session::get('success')}} </p>
 	</div>
 	@endif
+	@if (Session::has('error'))
+	<div class="row flash">
+		<p> {{Session::get('error')}} </p>
+	</div>
+	@endif
 	<form method="POST" action="/customers/process">
 		<input type="hidden" name="id" value="{{ $customer->id }}"/>
 		@include('customers.form')
