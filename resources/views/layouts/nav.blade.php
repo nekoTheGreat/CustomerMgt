@@ -4,7 +4,7 @@
 		<ul class="right hide-on-med-and-down">
 			<li><a href="/customers">Customers</a></li>
 			<li><a href="/">Reports</a></li>
-			<li><a href="/">Logout</a></li>
+			<li><a href="/auth/login">Logout</a></li>
 		</ul>
 		<a href="#" data-activates="right-mobile-menu" class="button-collapse right right-button-collapse">
 			<i class="material-icons">menu</i>
@@ -12,7 +12,7 @@
 		<ul class="side-nav" id="right-mobile-menu">
 			<li><a href="/customers">Customers</a></li>
 			<li><a href="/">Reports</a></li>
-			<li><a href="/">Logout</a></li>
+			<li><a href="/auth/login">Logout</a></li>
 		</ul>
 		@yield('left_mobile_menu')
 	</div>

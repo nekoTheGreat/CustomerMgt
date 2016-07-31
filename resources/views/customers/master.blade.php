@@ -15,16 +15,8 @@
 @section('content')
 
 <div class="row">
-	<div class="col hide-on-small-only m3 l2 blue lighten-4 submenu" style="padding:0px;">
-		<ul class="collection">
-			@foreach($subnav as $link)
-			<li class="collection-item waves-effects">
-				<a href="{{ $link['link' ]}}" class="waves-effects">{{ $link['name'] }}</a>
-			</li>
-			@endforeach
-		</ul>
-	</div>
-	<div class="col s12 m9 l10">
+	<div class="col hide-on-small-only m1 l1">&nbsp;</div>
+	<div class="col s12 s1 m10 l10">
 		@yield('right_panel')
 	</div>
 @endsection

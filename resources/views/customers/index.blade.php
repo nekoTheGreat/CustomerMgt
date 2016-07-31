@@ -52,6 +52,11 @@
 		</tr>
 		<? endforeach; ?>
 	</table>
+	<div class="fixed-action-btn horizontal" style="bottom: 15px; right: 24px;">
+	    <a class="btn-floating btn-large blue waves-effect waves-light" href="/customers/form">
+	    	<i class="material-icons">add</i>
+	    </a>
+	</div>
 </div>
 
 @endsection
